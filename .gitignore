@@ -9,5 +9,5 @@ test/
 src/
 build/
 notebooks/
-nail_ssg.egg-info/
 tests/data/site/
+*.egg-info/
