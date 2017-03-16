@@ -11,7 +11,9 @@ setup(
             ['nail-ssg = nail_ssg_base.commands:run']
     },
     install_requires=[
-        'git+https://github.com/nail-ssg/nail-config@v0.1',
         'click==6.7',
         'ruamel.yaml==0.13.14'
+    ],
+    dependency_links=[
+        'https://github.com/nail-ssg/nail-config@v0.1'
     ])
