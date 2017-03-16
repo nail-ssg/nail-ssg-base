@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from os.path import join, dirname
 
 setup(
-    name='nailssg.base',
+    name='nail.ssgbase',
     version='0.1',
     packages=find_packages(),
     long_description=open(join(dirname(__file__), 'README.md')).read(),
@@ -16,6 +16,6 @@ setup(
         'nail.config<=0.9.9',
     ],
     dependency_links=[
-        'https://github.com/nail-ssg/nail-config/archive/master.zip#egg=nail.config-0.1.0'
+        'https://github.com/nail-ssg/nail-config/master#egg=nail.config-0.1.0'
     ]
 )
