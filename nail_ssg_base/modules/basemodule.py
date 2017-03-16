@@ -1,6 +1,6 @@
 class BaseModule(object):
-    _default_config = None   # dict
-    _config_comments = None  # dict
+    _default_config = {}     # dict
+    _config_comments = {}    # dict
     __version__ = None       # string
     name = ''
 
