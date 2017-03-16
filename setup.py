@@ -8,7 +8,7 @@ setup(
     long_description=open(join(dirname(__file__), 'README.md')).read(),
     entry_points={
         'console_scripts':
-            ['nail-ssg = nail-ssg-base.commands:run']
+            ['nail-ssg = nail_ssg_base.commands:run']
     },
     install_requires=[
         'click==6.7',
