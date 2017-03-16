@@ -17,7 +17,7 @@ class ConfigEx(Config):
     def add_module(self, module_name):
         if module_name not in self.modules:
             try:
-                module = importlib.import_module('nail_ssg.modules.' + module_name)
+                module = importlib.import_module(module_name)
             except Exception as e:
                 raise e
             self.modules[module_name] = module.create(self)
