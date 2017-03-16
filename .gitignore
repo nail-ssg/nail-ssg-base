@@ -1,0 +1,13 @@
+*.cmd
+*.pyc
+.config.yml
+.idea/
+.cache/
+env/
+dist/
+test/
+src/
+build/
+notebooks/
+nail_ssg.egg-info/
+tests/data/site/
