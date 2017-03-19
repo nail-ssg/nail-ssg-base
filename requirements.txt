@@ -1,3 +1,3 @@
-git+https://github.com/nail-ssg/nail-config/archive/develop.zip#egg=nail.config-0.1.0
+git+https://github.com/nail-ssg/nail-config@develop
 ruamel.yaml==0.13.14
 pytest==3.0.6
