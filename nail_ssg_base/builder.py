@@ -7,12 +7,15 @@ from shutil import rmtree, copytree
 
 
 class Builder(object):
+    _file_loaded = False
     config = None
+
 
     def _load_config(self, filename):
         self.config = ConfigEx()
-        if not self.config.load(filename):
-            raise Exception('OMG')
+        # if not self.config.load(filename):
+        #     raise Exception('OMG')
+        self._file_loaded = self.config.load(filename)
         default_config = {
             'core':
             {
