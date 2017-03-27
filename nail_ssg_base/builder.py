@@ -81,7 +81,8 @@ class Builder(object):
         for module_name in self.config('modify/order'):
             module = self.config.modules[module_name]
             module.modify_data()
-        rmtree(self.config.full_dst_path, True)
+        print("Removing folder {}".format(self.config.full_dst_path))
+        # rmtree(self.config.full_dst_path, True)
         for module_name in self.config('builders/order'):
             module = self.config.modules[module_name]
             module.build()
