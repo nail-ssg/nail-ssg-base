@@ -20,7 +20,7 @@ class Builder(object):
             'core':
             {
                 'src': 'src',
-                'dist': 'site',
+                'dest': 'site',
                 'currentNamespace': 'default',
                 'main': 'nail_ssg_standard.main',
             },
@@ -38,7 +38,7 @@ class Builder(object):
         }
         config_comments = {
             'core.modules': 'list of modules and they states',
-            'core.dist': 'distination directory for ready site',
+            'core.dest': 'destination directory for builded site',
             'core.src': 'source of templates, site files and raw page data',
             'core.currentNamespace': 'current namespace of aliases',
         }
