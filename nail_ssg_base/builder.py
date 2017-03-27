@@ -53,17 +53,17 @@ class Builder(object):
         # if not os.path.exists(filename):
         #     self.set_default_config()
         self._load_config(filename)
-        self.src = self.config('core.src')
-        self.dst = self.config('core.dist')
+        self.src = self.config('core/src')
+        self.dst = self.config('core/dist')
         self.config.full_src_path = os.path.abspath(self.src)
         self.config.full_dst_path = os.path.abspath(self.dst)
         self.config.data = {
             'data': {},
         }
-        main_module_name = self.config('core.main')
+        main_module_name = self.config('core/main')
         self.main_module = self.config.add_module(main_module_name)
         self._init_modules()
-        self.scan_order = self.config('scan.order', [])
+        self.scan_order = self.config('scan/order', [])
         # print(self._modules)
         # print(self.config.as_yamlstr())
         # print(self.config)
@@ -74,11 +74,11 @@ class Builder(object):
         # print('='*20)
         # yprint(self.config.data)
 
-        for module_name in self.config('modify.order'):
+        for module_name in self.config('modify/order'):
             module = self.config.modules[module_name]
             module.modify_data()
         rmtree(self.config.full_dst_path, True)
-        for module_name in self.config('builders.order'):
+        for module_name in self.config('builders/order'):
             module = self.config.modules[module_name]
             module.build()
 
