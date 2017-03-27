@@ -51,6 +51,7 @@ class Builder(object):
         for module_name in self.config.modules:
             module = self.config.modules[module_name]
             module.init()
+        self.config.save()
 
     def __init__(self, filename):
         # if not os.path.exists(filename):
