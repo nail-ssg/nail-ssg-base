@@ -17,7 +17,7 @@ class ConfigEx(Config):
     def add_module(self, module_name):
         if module_name not in self.modules:
             try:
-                m = module_name.rsplit('.')
+                m = module_name.rsplit('.', 1)
                 if len(m) == 1:
                     module = importlib.import_module(m[0])
                 else:
