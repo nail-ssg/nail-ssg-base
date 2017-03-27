@@ -107,8 +107,8 @@ class Builder(object):
         return True
 
     def set_default_configs(self):
-        for key in self._modules:
-            module = self._modules[key]
+        for key in self.config.modules:
+            module = self.config.modules[key]
             default_core_config, core_comments = module.get_default_config()
             self.set_default_config(default_core_config, core_comments)
 
