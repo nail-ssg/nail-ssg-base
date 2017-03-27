@@ -13,9 +13,9 @@ setup(
     install_requires=[
         'click==6.7',
         'ruamel.yaml==0.13.14',
-        'nail.config==0.1.0',
+        'nail.config==0.1.001',
     ],
     dependency_links=[
-        'https://github.com/nail-ssg/nail-config/archive/develop.zip#egg=nail.config-0.1.0'
+        'https://github.com/nail-ssg/nail-config/archive/develop.zip#egg=nail.config-0.1.001'
     ]
 )

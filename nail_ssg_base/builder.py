@@ -22,7 +22,7 @@ class Builder(object):
                 'src': 'src',
                 'dist': 'site',
                 'currentNamespace': 'default',
-                'main': 'nail_ssg_standard.modules.main',
+                'main': 'nail_ssg_standard.main',
             },
             'scan': {
                 'order': [],
