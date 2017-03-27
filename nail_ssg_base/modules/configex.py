@@ -21,7 +21,7 @@ class ConfigEx(Config):
                 if len(m) == 1:
                     module = importlib.import_module(m[0])
                 else:
-                    module = importlib.import_module(m[1], package=m[0])
+                    module = getattr(importlib.import_module(m[0]), m[1])
             except Exception as e:
                 raise e
             self.modules[module_name] = module.create(self)
