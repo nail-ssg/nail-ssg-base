@@ -58,7 +58,7 @@ class Builder(object):
         #     self.set_default_config()
         self._load_config(filename)
         self.src = self.config('core/src')
-        self.dst = self.config('core/dist')
+        self.dst = self.config('core/dest')
         self.config.full_src_path = os.path.abspath(self.src)
         self.config.full_dst_path = os.path.abspath(self.dst)
         self.config.data = {
