@@ -10,7 +10,6 @@ class Builder(object):
     _file_loaded = False
     config = None
 
-
     def _load_config(self, filename):
         self.config = ConfigEx()
         # if not self.config.load(filename):
@@ -98,7 +97,7 @@ class Builder(object):
             'name': name,
             'full_path': full_path
         }
-        rel_path = os.path.relpath(full_path, self.config.full_src_path)
+        rel_path = os.path.relpath(full_path, self.config.full_src_path).replace(os.sep, '/')
         self.main_module.process_file(fileinfo, rules, data)
         for module_name in self.scan_order:
             module = self.config.modules[module_name]
