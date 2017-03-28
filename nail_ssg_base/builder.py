@@ -38,8 +38,8 @@ class Builder(object):
         }
         config_comments = {
             'core.modules': 'list of modules and they states',
-            'core.dest': '^dest - destination directory for builded site',
-            'core.src': '^src - source of templates, site files and raw page data',
+            'core.dest': 'dest - destination directory for builded site',
+            'core.src': 'src - source of templates, site files and raw page data',
             'core.currentNamespace': 'current namespace of aliases',
         }
         self.config.add_default_config(
