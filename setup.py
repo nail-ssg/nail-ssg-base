@@ -3,7 +3,7 @@ from os.path import join, dirname
 
 setup(
     name='nail.ssg.base',
-    version='0.1.002',
+    version='0.1.2',
     packages=find_packages(),
     long_description=open(join(dirname(__file__), 'README.md')).read(),
     entry_points={
@@ -11,8 +11,8 @@ setup(
             ['nail-ssg = nail_ssg_base.commands:run']
     },
     install_requires=[
-        'click==6.7',
-        'ruamel.yaml==0.13.14',
+        'click>=6.7',
+        'ruamel.yaml>=0.13.14',
         'nail.config>=0.1',
     ],
     dependency_links=[
