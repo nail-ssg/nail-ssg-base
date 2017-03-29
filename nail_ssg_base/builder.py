@@ -25,7 +25,7 @@ class Builder(object):
             },
             'scan': {
                 'order': [],
-                'types': []
+                'types': {}
             },
             'modify': {
                 'order': [],
@@ -37,9 +37,10 @@ class Builder(object):
         }
         config_comments = {
             'core.modules': 'list of modules and they states',
-            'core.dest': 'dest - destination directory for builded site',
-            'core.src': 'src - source of templates, site files and raw page data',
+            'core.dest': 'destination directory for builded site',
+            'core.src': 'source of templates, site files and raw page data',
             'core.currentNamespace': 'current namespace of aliases',
+            'scan.order': 'module list',
         }
         self.config.add_default_config(
             default_config,
