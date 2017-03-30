@@ -31,11 +31,14 @@ class Builder(object):
                 'order': [],
                 'options': []
             },
-            'builders': {
+            'build': {
                 'order': []
             }
         }
         config_comments = {
+            'scan':'step #1',
+            'modify':'step #2',
+            'build':'step #3',
             'core.modules': 'list of modules and they states',
             'core.dest': 'destination directory for builded site',
             'core.src': 'source of templates, site files and raw page data',
@@ -83,7 +86,7 @@ class Builder(object):
             module.modify_data()
         print("Removing folder {}".format(self.config.full_dst_path))
         # rmtree(self.config.full_dst_path, True)
-        for module_name in self.config('builders/order'):
+        for module_name in self.config('build/order'):
             module = self.config.modules[module_name]
             module.build()
 
