@@ -36,14 +36,14 @@ class Builder(object):
             }
         }
         config_comments = {
-            'scan':'step #1',
-            'modify':'step #2',
-            'build':'step #3',
-            'core.modules': 'list of modules and they states',
-            'core.dest': 'destination directory for builded site',
-            'core.src': 'source of templates, site files and raw page data',
-            'core.currentNamespace': 'current namespace of aliases',
-            'scan.order': 'module list',
+            'scan': 'Step #1',
+            'modify': 'Step #2',
+            'build': 'Step #3',
+            'core.modules': 'List of modules and they states',
+            'core.dest': 'Destination directory for builded site',
+            'core.src': 'Source of templates, site files and raw page data',
+            'core.currentNamespace': 'Current namespace of aliases',
+            'scan.order': 'Module list',
         }
         self.config.add_default_config(
             default_config,
@@ -78,14 +78,16 @@ class Builder(object):
     def build(self):
         dr = DirRunner(self.src, self._file_handler)
         dr.run()
-        # print('='*20)
+        print('='*20)
         # yprint(self.config.data)
-
+        print('='*20)
+        self.main_module.modify_data()
         for module_name in self.config('modify/order'):
             module = self.config.modules[module_name]
             module.modify_data()
         print("Removing folder {}".format(self.config.full_dst_path))
         # rmtree(self.config.full_dst_path, True)
+        self.main_module.build()
         for module_name in self.config('build/order'):
             module = self.config.modules[module_name]
             module.build()
