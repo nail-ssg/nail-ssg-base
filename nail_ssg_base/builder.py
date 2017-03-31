@@ -68,7 +68,7 @@ class Builder(object):
             'data': {},
         }
         main_module_name = self.config('core/main')
-        self.main_module = self.config.add_module(main_module_name)
+        self.config.main_module = self.config.add_module(main_module_name)
         self._init_modules()
         self.scan_order = self.config('scan/order', [])
         # print(self._modules)
@@ -78,16 +78,16 @@ class Builder(object):
     def build(self):
         dr = DirRunner(self.src, self._file_handler)
         dr.run()
-        print('='*20)
+        # print('='*20)
         # yprint(self.config.data)
-        print('='*20)
-        self.main_module.modify_data()
+        # print('='*20)
+        self.config.main_module.modify_data()
         for module_name in self.config('modify/order'):
             module = self.config.modules[module_name]
             module.modify_data()
         print("Removing folder {}".format(self.config.full_dst_path))
         # rmtree(self.config.full_dst_path, True)
-        self.main_module.build()
+        self.config.main_module.build()
         for module_name in self.config('build/order'):
             module = self.config.modules[module_name]
             module.build()
@@ -104,11 +104,11 @@ class Builder(object):
             'full_path': full_path
         }
         rel_path = os.path.relpath(full_path, self.config.full_src_path).replace(os.sep, '/')
-        self.main_module.process_file(fileinfo, rules, data)
+        self.config.main_module.process_file(fileinfo, rules, data)
         for module_name in self.scan_order:
             module = self.config.modules[module_name]
             module.process_file(fileinfo, rules, data)
-        self.config.data['data'][rel_path] = data
+        self.config.set_data(rel_path, data)
         return True
 
     def set_default_configs(self):

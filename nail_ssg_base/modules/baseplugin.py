@@ -15,10 +15,13 @@ class BasePlugin(BaseModule):
         config.add_default_config(cls._default_config, cls._config_comments)
 
     def process_file(self, fileinfo, rules, data):
-        return data
+        pass
 
     def modify_data(self):
         pass
 
     def build(self):
         pass
+
+    def get_data(self, path):
+        return None

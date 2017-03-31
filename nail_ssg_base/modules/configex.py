@@ -33,8 +33,15 @@ class ConfigEx(Config):
         return self._get_module(module_name)
 
     def _get_module(self, module_name):
-        return self.modules[module_name] if module_name in self.modules else None
+        return self.modules.get(module_name, None)
 
     def get_module(self, module_name):
         module = self._get_module(module_name)
-        return self.add_module(module_name) if module is None else module
+        # Есть опасность, что add_module приведёт к проблемам, для модулей упомянутых в config.*.order
+        return self.add_module(module_name) if module is None else module 
+
+    def set_data(self, path, value):
+        self.data[path] = value
+
+    def get_data(self, path):
+        return self.data.get(path, None)
