@@ -67,6 +67,7 @@ class Builder(object):
         self.config.data = {
             'data': {},
         }
+        self.config.signals = {}
         main_module_name = self.config('core/main')
         self.config.main_module = self.config.add_module(main_module_name)
         self._init_modules()
