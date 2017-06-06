@@ -13,6 +13,8 @@ class ConfigEx(Config):
         self.data = {}
         self.full_src_path = ''
         self.full_dst_path = ''
+        self.signals = {}
+
 
     def add_module(self, module_name):
         if module_name not in self.modules:

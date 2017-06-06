@@ -13,6 +13,7 @@ setup(
     install_requires=[
         'click>=6.7',
         'ruamel.yaml>=0.13.14',
+        'blinker>=1.4',
         'nail.config>=0.1',
     ],
     dependency_links=[
