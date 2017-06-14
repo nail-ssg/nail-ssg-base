@@ -85,7 +85,7 @@ class Builder(object):
             module = self.config.modules[module_name]
             module.modify_data()
         print("Removing folder {}".format(self.config.full_dst_path))
-        # rmtree(self.config.full_dst_path, True)
+        rmtree(self.config.full_dst_path, True)
         self.config.main_module.build()
         for module_name in self.config('40. build/order'):
             module = self.config.modules[module_name]
