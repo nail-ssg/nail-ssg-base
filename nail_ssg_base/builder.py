@@ -15,34 +15,34 @@ class Builder(object):
         #     raise Exception('OMG')
         self._file_loaded = self.config.load(filename)
         default_config = {
-            'core':
+            '00. core':
             {
                 'src': 'src',
                 'dest': 'site',
                 'currentNamespace': 'default',
                 'main': 'nail_ssg_standard.main',
             },
-            'scan': {
+            '10. scan': {
                 'order': [],
                 'types': {}
             },
-            'modify': {
+            '30. modify': {
                 'order': [],
                 'options': []
             },
-            'build': {
+            '40. build': {
                 'order': []
             }
         }
         config_comments = {
-            'scan': 'Step #1',
-            'modify': 'Step #2',
-            'build': 'Step #3',
-            'core/modules': 'List of modules and they states',
-            'core/dest': 'Destination directory for builded site',
-            'core/src': 'Source of templates, site files and raw page data',
-            'core/currentNamespace': 'Current namespace of aliases',
-            'scan/order': 'Module list',
+            '10. scan': 'Step #1',
+            '30. modify': 'Step #2',
+            '40. build': 'Step #3',
+            '00. core/modules': 'List of modules and they states',
+            '00. core/dest': 'Destination directory for builded site',
+            '00. core/src': 'Source of templates, site files and raw page data',
+            '00. core/currentNamespace': 'Current namespace of aliases',
+            '10. scan/order': 'Module list',
         }
         self.config.add_default_config(
             default_config,
@@ -59,17 +59,17 @@ class Builder(object):
         # if not os.path.exists(filename):
         #     self.set_default_config()
         self._load_config(filename)
-        self.src = self.config('core/src')
-        self.dst = self.config('core/dest')
+        self.src = self.config('00. core/src')
+        self.dst = self.config('00. core/dest')
         self.config.full_src_path = os.path.abspath(self.src)
         self.config.full_dst_path = os.path.abspath(self.dst)
         self.config.data = {
             'data': {},
         }
-        main_module_name = self.config('core/main')
+        main_module_name = self.config('00. core/main')
         self.config.main_module = self.config.add_module(main_module_name)
         self._init_modules()
-        self.scan_order = self.config('scan/order', [])
+        self.scan_order = self.config('10. scan/order', [])
         # print(self._modules)
         # print(self.config.as_yamlstr())
         # print(self.config)
@@ -81,13 +81,13 @@ class Builder(object):
         # yprint(self.config.data)
         # print('='*20)
         self.config.main_module.modify_data()
-        for module_name in self.config('modify/order'):
+        for module_name in self.config('30. modify/order'):
             module = self.config.modules[module_name]
             module.modify_data()
         print("Removing folder {}".format(self.config.full_dst_path))
         # rmtree(self.config.full_dst_path, True)
         self.config.main_module.build()
-        for module_name in self.config('build/order'):
+        for module_name in self.config('40. build/order'):
             module = self.config.modules[module_name]
             module.build()
 
@@ -98,7 +98,7 @@ class Builder(object):
         rules = {}
         folder, name = full_path.rsplit(os.sep, 1)
         fileinfo = {
-            'folder': folder,
+            'directory': folder,
             'name': name,
             'full_path': full_path
         }

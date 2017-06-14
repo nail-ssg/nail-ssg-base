@@ -26,7 +26,7 @@ class ConfigEx(Config):
             except Exception as e:
                 raise e
             self.modules[module_name] = module.create(self)
-            modules = self('core/modules')
+            modules = self('00. core/modules')
             if modules:
                 for name in modules:
                     if modules[name]:
