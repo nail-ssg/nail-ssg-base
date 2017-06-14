@@ -38,11 +38,11 @@ class Builder(object):
             'scan': 'Step #1',
             'modify': 'Step #2',
             'build': 'Step #3',
-            'core.modules': 'List of modules and they states',
-            'core.dest': 'Destination directory for builded site',
-            'core.src': 'Source of templates, site files and raw page data',
-            'core.currentNamespace': 'Current namespace of aliases',
-            'scan.order': 'Module list',
+            'core/modules': 'List of modules and they states',
+            'core/dest': 'Destination directory for builded site',
+            'core/src': 'Source of templates, site files and raw page data',
+            'core/currentNamespace': 'Current namespace of aliases',
+            'scan/order': 'Module list',
         }
         self.config.add_default_config(
             default_config,
