@@ -5,8 +5,7 @@ class BaseModule(object):
     name = ''
     def __init__(self, config):
         self.config = config
-        cls = self.__class__
-        config.add_default_config(cls._default_config, cls._config_comments)
+        config.add_default_config(self._default_config, self._config_comments)
 
     def init(self):
         pass

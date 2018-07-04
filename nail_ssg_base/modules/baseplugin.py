@@ -11,8 +11,7 @@ class BasePlugin(BaseModule):
 
     def __init__(self, config):
         super().__init__(config)
-        cls = self.__class__
-        config.add_default_config(cls._default_config, cls._config_comments)
+        config.add_default_config(self._default_config, self._config_comments)
 
     def process_file(self, fileinfo, rules, data):
         pass
