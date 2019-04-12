@@ -16,6 +16,6 @@ setup(
         'blinker>=1.4',
     ],
     dependency_links=[
-        'https://github.com/nail-ssg/nail-config/archive/release/v0.1.zip#egg=nail.config-0.1'        
+        'https://github.com/nail-ssg/nail-config/archive/develop.zip#egg=nail.config-0.1'
     ]
 )
