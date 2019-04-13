@@ -14,9 +14,8 @@ setup(
         'click>=6.7',
         'ruamel.yaml>=0.13.14',
         'blinker>=1.4',
-        'nail.config @ git+https://github.com/nail-ssg/nail-config/develop',
     ],
-    # dependency_links=[
-    #     'https://github.com/nail-ssg/nail-config/archive/develop.zip#egg=nail.config-0.1.2'
-    # ]
+    dependency_links=[
+        'nail.config @ https://github.com/nail-ssg/nail-config/archive/develop.zip#egg=nail.config-0.1.2'
+    ]
 )
