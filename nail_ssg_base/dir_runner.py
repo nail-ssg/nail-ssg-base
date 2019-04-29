@@ -2,6 +2,9 @@ import io
 import os
 import re
 import inspect
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def _default_handler(self, full_path, is_dir):
@@ -39,7 +42,11 @@ class DirRunner(object):
         return self._in_rules(abs_path, is_dir, self.include_rules)
 
     def _scan_dir(self, abs_path: str):
-        dir_list = os.listdir(abs_path)
+        try:
+            dir_list = os.listdir(abs_path)
+        except FileNotFoundError:
+            logger.warning(f'Папка "{abs_path}" не найдена')
+            return
         for item in dir_list:
             full_path = os.path.abspath(os.sep.join([abs_path, item]))
             is_dir = os.path.isdir(full_path)
