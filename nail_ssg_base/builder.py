@@ -1,14 +1,14 @@
 import os
-from .prints import *
-from .modules import ConfigEx
+from shutil import rmtree
+
 from .dir_runner import DirRunner
-from collections import OrderedDict
-from shutil import rmtree, copytree
+from .modules import ConfigEx
 
 
 class Builder(object):
     _file_loaded = False
     config = None
+
     def _load_config(self, filename):
         self.config = ConfigEx()
         # if not self.config.load(filename):
@@ -16,12 +16,12 @@ class Builder(object):
         self._file_loaded = self.config.load(filename)
         default_config = {
             '00. core':
-            {
-                'src': 'src',
-                'dest': 'site',
-                'currentNamespace': 'default',
-                'main': 'nail_ssg_standard.main',
-            },
+                {
+                    'src': 'src',
+                    'dest': 'site',
+                    'currentNamespace': 'default',
+                    'main': 'nail_ssg_standard.main',
+                },
             '10. scan': {
                 'order': [],
                 'types': {}
