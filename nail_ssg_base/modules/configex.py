@@ -13,7 +13,7 @@ class ConfigEx(Config):
         self.data = {}
         self.full_src_path = ''
         self.full_dst_path = ''
-        self.main_module = None
+        self._main_module = None
 
     def add_module(self, module_name):
         if module_name not in self.modules:
@@ -46,3 +46,10 @@ class ConfigEx(Config):
 
     def get_data(self, path):
         return self.data.get(path, None)
+
+    @property
+    def main_module(self):
+        if self.changed or not self._main_module:
+            main_module_name = self('00. core/main')
+            self._main_module = self.add_module(main_module_name)
+        return self._main_module

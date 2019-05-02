@@ -9,11 +9,17 @@ class Builder(object):
     _file_loaded = False
     config = None
 
-    def _load_config(self, filename):
+    def _load_config(self, data=None, filename=''):
         self.config = ConfigEx()
         # if not self.config.load(filename):
         #     raise Exception('OMG')
-        self._file_loaded = self.config.load(filename)
+        if not data and not filename:
+            raise Exception('set value in filename or source parameter')
+        if filename:
+            self._file_loaded = self.config.load(filename)
+        else:
+            self.config.loads(data)
+            self._file_loaded = True
         default_config = {
             '00. core':
                 {
@@ -55,10 +61,10 @@ class Builder(object):
             module.init()
         self.config.save()
 
-    def __init__(self, filename):
+    def __init__(self, filename='', data=None):
         # if not os.path.exists(filename):
         #     self.set_default_config()
-        self._load_config(filename)
+        self._load_config(filename=filename, data=data)
         self.src = self.config('00. core/src')
         self.dst = self.config('00. core/dest')
         self.config.full_src_path = os.path.abspath(self.src)
@@ -66,8 +72,6 @@ class Builder(object):
         self.config.data = {
             'data': {},
         }
-        main_module_name = self.config('00. core/main')
-        self.config.main_module = self.config.add_module(main_module_name)
         self._init_modules()
         self.scan_order = self.config('10. scan/order', [])
         # print(self._modules)
