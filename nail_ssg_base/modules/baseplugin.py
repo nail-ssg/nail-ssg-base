@@ -1,15 +1,17 @@
+from nail_config import Config
+
 from .basemodule import BaseModule
 
 
 class BasePlugin(BaseModule):
     module_type = 'plugin'
-    _default_config = None   # dict
+    _default_config = None  # dict
     _config_comments = None  # dict
-    __version__ = None       # string
+    __version__ = None  # string
     name = ''
     types = {}
 
-    def __init__(self, config):
+    def __init__(self, config: Config):
         super().__init__(config)
         config.add_default_config(self._default_config, self._config_comments)
 

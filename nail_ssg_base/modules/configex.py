@@ -1,10 +1,10 @@
 import importlib
-from nail_config.config import Config
 from collections import OrderedDict
+
+from nail_config.config import Config
 
 
 class ConfigEx(Config):
-
     """docstring for ConfigEx"""
 
     def __init__(self):
@@ -13,7 +13,7 @@ class ConfigEx(Config):
         self.data = {}
         self.full_src_path = ''
         self.full_dst_path = ''
-
+        self.main_module = None
 
     def add_module(self, module_name):
         if module_name not in self.modules:
@@ -39,7 +39,7 @@ class ConfigEx(Config):
     def get_module(self, module_name):
         module = self._get_module(module_name)
         # Есть опасность, что add_module приведёт к проблемам, для модулей упомянутых в config.*.order
-        return self.add_module(module_name) if module is None else module 
+        return self.add_module(module_name) if module is None else module
 
     def set_data(self, path, value):
         self.data[path] = value
