@@ -56,10 +56,11 @@ class Builder(object):
         )
 
     def _init_modules(self):
+        self.config.main_module # инициализация модулей
         for module_name in self.config.modules:
             module = self.config.modules[module_name]
             module.init()
-        self.config.save()
+        self.config.do_autosave()
 
     def __init__(self, filename='', data=None):
         # if not os.path.exists(filename):
@@ -101,16 +102,16 @@ class Builder(object):
         data = {}
         rules = {}
         folder, name = full_path.rsplit(os.sep, 1)
-        fileinfo = {
+        file_info = {
             'directory': folder,
             'name': name,
             'full_path': full_path
         }
         rel_path = os.path.relpath(full_path, self.config.full_src_path).replace(os.sep, '/')
-        self.config.main_module.process_file(fileinfo, rules, data)
+        self.config.main_module.process_file(file_info, rules, data)
         for module_name in self.scan_order:
             module = self.config.modules[module_name]
-            module.process_file(fileinfo, rules, data)
+            module.process_file(file_info, rules, data)
         self.config.set_data(rel_path, data)
         return True
 
