@@ -1,5 +1,6 @@
-from fnmatch import fnmatch
 import re
+from fnmatch import fnmatch
+
 
 def check_rule(rule, filename):
     rule_type, pattern = (s.strip() for s in rule.split('='))

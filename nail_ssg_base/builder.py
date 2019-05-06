@@ -1,6 +1,8 @@
 import os
 from shutil import rmtree
 
+from nail_ssg_base.utils import absolute_path
+
 from .dir_runner import DirRunner
 from .modules import ConfigEx
 
@@ -17,6 +19,7 @@ class Builder(object):
             raise Exception('set value in filename or source parameter')
         if filename:
             self._file_loaded = self.config.load(filename)
+            self.config_dir = os.path.dirname(filename)
         else:
             self.config.loads(data)
             self._file_loaded = True
@@ -56,7 +59,7 @@ class Builder(object):
         )
 
     def _init_modules(self):
-        self.config.main_module # инициализация модулей
+        self.config.init_main_module()
         for module_name in self.config.modules:
             module = self.config.modules[module_name]
             module.init()
@@ -65,11 +68,12 @@ class Builder(object):
     def __init__(self, filename='', data=None):
         # if not os.path.exists(filename):
         #     self.set_default_config()
+        self.config_dir = '.'
         self._load_config(filename=filename, data=data)
         self.src = self.config('00. core/src')
         self.dst = self.config('00. core/dest')
-        self.config.full_src_path = os.path.abspath(self.src)
-        self.config.full_dst_path = os.path.abspath(self.dst)
+        self.config.full_src_path = absolute_path(self.config_dir, self.src)
+        self.config.full_dst_path = absolute_path(self.config_dir, self.dst)
         self.config.data = {
             'data': {},
         }

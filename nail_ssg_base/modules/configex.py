@@ -49,7 +49,10 @@ class ConfigEx(Config):
 
     @property
     def main_module(self):
+        self.init_main_module()
+        return self._main_module
+
+    def init_main_module(self):
         if self.changed or not self._main_module:
             main_module_name = self('00. core/main')
             self._main_module = self.add_module(main_module_name)
-        return self._main_module
